@@ -1,2 +1,2 @@
 FROM registry.dataos.io/datafoundry/coreos-etcd:latest
-COPY /bash/cluster_status.sh /cluster_status.sh
+COPY /bash/etcd-join.sh /etcd-join.sh
