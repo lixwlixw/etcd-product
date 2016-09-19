@@ -1,0 +1,184 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/deployment.cancelled: "4"
+    creationTimestamp: null
+    labels:
+      etcd: test
+      run: etcd-1
+    name: etcd-1
+  spec:
+    replicas: 1
+    selector:
+      run: etcd-1
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: etcd-1
+      spec:
+        containers:
+        - command:
+          - etcd
+          - -name
+          - etcd1
+          - -initial-advertise-peer-urls
+          - http://etcd-1:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
+          - new
+          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          imagePullPolicy: Always
+          name: etcd-1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status: {}
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      etcd: test
+      run: etcd-2
+    name: etcd-2
+  spec:
+    replicas: 1
+    selector:
+      run: etcd-2
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: etcd-2
+      spec:
+        containers:
+        - command:
+          - etcd
+          - -name
+          - etcd2
+          - -initial-advertise-peer-urls
+          - http://etcd-2:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
+          - new
+          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          imagePullPolicy: Always
+          name: etcd-2
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status: {}
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      etcd: test
+      run: etcd-3
+    name: etcd-3
+  spec:
+    replicas: 1
+    selector:
+      run: etcd-3
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: etcd-3
+      spec:
+        containers:
+        - command:
+          - etcd
+          - -name
+          - etcd3
+          - -initial-advertise-peer-urls
+          - http://etcd-3:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
+          - new
+          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          imagePullPolicy: Always
+          name: etcd-3
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status: {}
+kind: List
+metadata: {}
+

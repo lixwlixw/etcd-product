@@ -1,0 +1,25 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      etcd: test
+    name: hh
+  spec:
+    host: etcd-test-test.app.dataos.io
+    to:
+      kind: Service
+      name: sb-etcd-test
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2016-09-18T08:52:15Z
+        status: "True"
+        type: Admitted
+      host: etcd-test-test.app.dataos.io
+      routerName: router
+kind: List
+metadata: {}
+
