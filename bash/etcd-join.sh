@@ -20,5 +20,5 @@ export ETCD_NAME=$2
 
 echo "----->start etcd"
 echo "ETCD_INITIAL_CLUSTER:" $ETCD_INITIAL_CLUSTER
-etcd -initial-cluster etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380 -initial-cluster-token sb-etcd-test-etcd -initial-advertise-peer-urls $3 -listen-peer-urls http://0.0.0.0:2380 -listen-client-urls http://127.0.0.1:2379 -advertise-client-urls $1 
+etcd -initial-cluster etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380 -initial-cluster-token sb-etcd-test-etcd -initial-advertise-peer-urls $3 -listen-peer-urls http://0.0.0.0:2380 -listen-client-urls http://127.0.0.1:2379 -advertise-client-urls $1 -initial-cluster-state $6 
 
