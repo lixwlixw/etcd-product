@@ -9,12 +9,12 @@ echo "----->join" $2 "into" $1 "with" $3  "use id " $4
 export ETCDCTL_ENDPOINT=$1
 
 echo "----->remove $3"
-tmpnode=`etcdctl  member list |grep $3|awk -F ':' '{print $1}'|awk -F '[' '{print $1}' `
+#tmpnode=`etcdctl  member list |grep $3|awk -F ':' '{print $1}'|awk -F '[' '{print $1}' `
 echo "remove nodeid:" $tmpnode
 etcdctl  member remove $tmpnode
 
 echo "----->add $2 $3"
-eval `etcdctl  member add  $3 | grep ETCD_INITIAL_CLUSTER`
+#eval `etcdctl  member add  $3 | grep ETCD_INITIAL_CLUSTER`
 export ETCD_INITIAL_CLUSTER_STATE=existing
 export ETCD_NAME=$2
 
