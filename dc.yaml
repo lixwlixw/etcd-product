@@ -31,22 +31,13 @@ items:
       spec:
         containers:
         - command:
-          - etcd
-          - -name
-          - etcd1
-          - -initial-advertise-peer-urls
-          - http://etcd-1:2380
-          - -listen-peer-urls
-          - http://0.0.0.0:2380
-          - -listen-client-urls
-          - http://0.0.0.0:2379
-          - -advertise-client-urls
+          - /bin/sh
+          - /etcd-join.sh
           - http://etcd-test-test.app.dataos.io:80
-          - -initial-cluster-token
-          - sb-instanceid-etcd
-          - -initial-cluster
-          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
-          - -initial-cluster-state
+          - etcd1
+          - http://etcd1:2380
+          - sb-BSIUID#-etcd
+          - ETCDROOTPASSWORD
           - new
           image: registry.dataos.io/datafoundry/coreos-etcd:latest
           imagePullPolicy: Always
@@ -90,22 +81,13 @@ items:
       spec:
         containers:
         - command:
-          - etcd
-          - -name
-          - etcd2
-          - -initial-advertise-peer-urls
-          - http://etcd-2:2380
-          - -listen-peer-urls
-          - http://0.0.0.0:2380
-          - -listen-client-urls
-          - http://0.0.0.0:2379
-          - -advertise-client-urls
+          - /bin/sh
+          - /etcd-join.sh
           - http://etcd-test-test.app.dataos.io:80
-          - -initial-cluster-token
-          - sb-instanceid-etcd
-          - -initial-cluster
-          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
-          - -initial-cluster-state
+          - etcd2
+          - http://etcd2:2380
+          - sb-BSIUID-etcd
+          - ETCDROOTPASSWORD
           - new
           image: registry.dataos.io/datafoundry/coreos-etcd:latest
           imagePullPolicy: Always
@@ -149,22 +131,13 @@ items:
       spec:
         containers:
         - command:
-          - etcd
-          - -name
-          - etcd3
-          - -initial-advertise-peer-urls
-          - http://etcd-3:2380
-          - -listen-peer-urls
-          - http://0.0.0.0:2380
-          - -listen-client-urls
-          - http://0.0.0.0:2379
-          - -advertise-client-urls
+          - /bin/sh
+          - /etcd-join.sh
           - http://etcd-test-test.app.dataos.io:80
-          - -initial-cluster-token
-          - sb-instanceid-etcd
-          - -initial-cluster
-          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
-          - -initial-cluster-state
+          - etcd3
+          - http://etcd3:2380
+          - sb-BSIUID-etcd
+          - ETCDROOTPASSWORD
           - new
           image: registry.dataos.io/datafoundry/coreos-etcd:latest
           imagePullPolicy: Always
