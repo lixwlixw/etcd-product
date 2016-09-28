@@ -1,3 +1,3 @@
-# etcd-product
+# etcd-cluster+persistence
 
-AsiainfoLDP datafoundry 平台使用
+## Suitable for AsiainfoLDP datafoundry deployment platform
