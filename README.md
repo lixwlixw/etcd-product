@@ -3,5 +3,5 @@
 ## Suitable for AsiainfoLDP datafoundry deployment platform
 
 Deployment way：
-oc create -f dc-all.yaml/svc-all.yaml.route.yaml
+oc create -f dc-all.yaml/svc-all.yaml.route.yaml (Ready to roll ahead of schedule )
 
