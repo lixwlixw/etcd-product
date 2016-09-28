@@ -8,18 +8,17 @@ items:
       etcd: test
     name: hh
   spec:
-    host: etcd-test-test.app.dataos.io
+    host: etcd-test12-test.app.dataos.io
     to:
       kind: Service
       name: sb-etcd-test
   status:
     ingress:
     - conditions:
-      - lastTransitionTime: 2016-09-18T08:52:15Z
+      - lastTransitionTime: 2016-09-22T02:01:44Z
         status: "True"
         type: Admitted
-      host: etcd-test-test.app.dataos.io
+      host: etcd-test12-test.app.dataos.io
       routerName: router
 kind: List
 metadata: {}
-

@@ -31,23 +31,39 @@ items:
       spec:
         containers:
         - command:
-          - /bin/sh
-          - /etcd-join.sh
-          - http://etcd-test-test.app.dataos.io:80
+          - etcd
+          - -name
           - etcd1
-          - http://etcd1:2380
-          - sb-BSIUID#-etcd
-          - ETCDROOTPASSWORD
+          - -initial-advertise-peer-urls
+          - http://etcd-1:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test12-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
           imagePullPolicy: Always
           name: etcd-1
           resources: {}
           terminationMessagePath: /dev/termination-log
+          volumeMounts:
+          - mountPath: /etcd1.etcd/
+            name: zk3
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         securityContext: {}
         terminationGracePeriodSeconds: 30
+        volumes:
+        - name: zk3
+          persistentVolumeClaim:
+            claimName: etcd-test1
     test: false
     triggers:
     - type: ConfigChange
@@ -55,6 +71,8 @@ items:
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
+    annotations:
+      openshift.io/deployment.cancelled: "3"
     creationTimestamp: null
     labels:
       etcd: test
@@ -81,23 +99,39 @@ items:
       spec:
         containers:
         - command:
-          - /bin/sh
-          - /etcd-join.sh
-          - http://etcd-test-test.app.dataos.io:80
+          - etcd
+          - -name
           - etcd2
-          - http://etcd2:2380
-          - sb-BSIUID-etcd
-          - ETCDROOTPASSWORD
+          - -initial-advertise-peer-urls
+          - http://etcd-2:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test12-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
           imagePullPolicy: Always
           name: etcd-2
           resources: {}
           terminationMessagePath: /dev/termination-log
+          volumeMounts:
+          - mountPath: /etcd2.etcd/
+            name: etcd2
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         securityContext: {}
         terminationGracePeriodSeconds: 30
+        volumes:
+        - name: etcd2
+          persistentVolumeClaim:
+            claimName: etcd-test2
     test: false
     triggers:
     - type: ConfigChange
@@ -105,6 +139,8 @@ items:
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
+    annotations:
+      openshift.io/deployment.cancelled: "1"
     creationTimestamp: null
     labels:
       etcd: test
@@ -131,27 +167,42 @@ items:
       spec:
         containers:
         - command:
-          - /bin/sh
-          - /etcd-join.sh
-          - http://etcd-test-test.app.dataos.io:80
+          - etcd
+          - -name
           - etcd3
-          - http://etcd3:2380
-          - sb-BSIUID-etcd
-          - ETCDROOTPASSWORD
+          - -initial-advertise-peer-urls
+          - http://etcd-3:2380
+          - -listen-peer-urls
+          - http://0.0.0.0:2380
+          - -listen-client-urls
+          - http://0.0.0.0:2379
+          - -advertise-client-urls
+          - http://etcd-test12-test.app.dataos.io:80
+          - -initial-cluster-token
+          - sb-instanceid-etcd
+          - -initial-cluster
+          - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
+          - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:latest
+          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
           imagePullPolicy: Always
           name: etcd-3
           resources: {}
           terminationMessagePath: /dev/termination-log
+          volumeMounts:
+          - mountPath: /etcd3.etcd/
+            name: etcd3
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         securityContext: {}
         terminationGracePeriodSeconds: 30
+        volumes:
+        - name: etcd3
+          persistentVolumeClaim:
+            claimName: etcd-test3
     test: false
     triggers:
     - type: ConfigChange
   status: {}
 kind: List
 metadata: {}
-
