@@ -3,7 +3,7 @@
 #!/bin/bash
 while true
 do
-	hh=$(etcdctl --endpoints $2 -u root:$1 cluster-health | tail -1|awk '{print $3}')
+	hh=$(etcdctl --endpoints $2  cluster-health | tail -1|awk '{print $3}')
 	if [ h"$hh" = h"healthy" ]
 	then
 			etcdctl --endpoints $2 user add root << EOF
