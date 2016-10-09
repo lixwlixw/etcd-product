@@ -50,7 +50,7 @@ items:
           - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
           - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
+          image: 172.30.188.59:5000/etcd-test/etcd-product
           imagePullPolicy: Always
           name: etcd-1
           resources: {}
@@ -120,7 +120,7 @@ items:
           - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
           - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
+          image: 172.30.188.59:5000/etcd-test/etcd-product
           imagePullPolicy: Always
           name: etcd-2
           resources: {}
@@ -190,7 +190,7 @@ items:
           - etcd2=http://etcd-2:2380,etcd1=http://etcd-1:2380,etcd3=http://etcd-3:2380
           - -initial-cluster-state
           - new
-          image: registry.dataos.io/datafoundry/coreos-etcd:v3.0.8
+          image: 172.30.188.59:5000/etcd-test/etcd-product
           imagePullPolicy: Always
           name: etcd-3
           resources: {}
