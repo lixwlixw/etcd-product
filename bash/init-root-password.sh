@@ -6,7 +6,7 @@ do
   hh=$(etcdctl --endpoints $2 -u root:$1 cluster-health | tail -1|awk '{print $3}')                        
   if [ h"$hh" = h"healthy" ]
     then              
-      etcdctl --endpoints $2 user add root << EOF
+etcdctl --endpoints $2 user add root << EOF
 $1                  
 EOF                 
        etcdctl --endpoints $2 auth enable
