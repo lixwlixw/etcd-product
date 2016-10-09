@@ -1,6 +1,7 @@
 #创建root用户密码，并回收guest权限，添加bind用户权限
 # $1 rootpassword
-
+#!/bin/bash
+seelp 300
 etcdctl user add root << EOF
 $1
 EOF
