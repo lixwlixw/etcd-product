@@ -6,7 +6,7 @@ do
 	hh=$(etcdctl --endpoints $2  cluster-health | tail -1|awk '{print $3}')
 	if [ h"$hh" = h"healthy" ]
 	then
-	                sleep 30
+	                sleep 60
 			etcdctl --endpoints $2 user add root <<EOF
 $1
 EOF
