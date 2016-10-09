@@ -8,24 +8,10 @@ metadata:
 spec:
   containers:
   - command:
-    - /etcd
-    - -name
-    - etcd0
-    - -initial-advertise-peer-urls
-    - http://sb-instanceid-etcd0:2380
-    - -listen-peer-urls
-    - http://0.0.0.0:2380
-    - -listen-client-urls
-    - http://0.0.0.0:2379
-    - -advertise-client-urls
-    - http://sb-instanceid-etcd.app.asiainfodata.com:80
-    - -initial-cluster-token 
-    - sb-instanceid-etcd
-    - -initial-cluster
-    - etcd0=http://sb-instanceid-etcd0:2380
-    - -initial-cluster-state
-    - new
-    image: quay.io/coreos/etcd:latest
+    - bash 
+    - /usr/bin/init-root-password.sh
+    - 1234
+    image: 172.30.188.59:5000/etcd-test/etcd-product
     imagePullPolicy: IfNotPresent
     name: etcd0
     ports:
