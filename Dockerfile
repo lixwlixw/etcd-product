@@ -1,2 +1,2 @@
-FROM registry.dataos.io/datafoundry/core-etcd:latest
+FROM registry.dataos.io/datafoundry/coreos-etcd:latest
 ADD bash /usr/bin
