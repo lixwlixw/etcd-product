@@ -2,7 +2,7 @@
 # $1 rootpassword
 #!/bin/bash
 seelp 300
-etcdctl user add root << EOF
+etcdctl --endpoints $2 user add root << EOF
 $1
 EOF
 
