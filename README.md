@@ -1,4 +1,4 @@
-#ETCD 集群
+#ETCD
 
 - oc new-build https://github.com/lixwlixw/etcd-product.git
 - oc create -f dc-all.yaml (提前创建好PV PVC)
