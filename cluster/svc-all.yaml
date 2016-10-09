@@ -96,7 +96,7 @@ items:
       protocol: TCP
       targetPort: 2379
     selector:
-      run: etcd-1
+      etcd: test
     sessionAffinity: None
     type: ClusterIP
   status:
